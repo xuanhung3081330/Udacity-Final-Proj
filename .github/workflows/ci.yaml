@@ -1,0 +1,40 @@
+name: frontend-ci
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  linting_job:
+    name: Linting job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Run ESLint
+        uses: npm run lint
+  test_job:
+    name: Test job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Run test
+        uses: npm run test
+  build_job:
+    name: Build job
+    runs-on: ubuntu-latest
+    needs:
+      - linting_job
+      - test_job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Install packages
+        uses: npm ci
+      - name: Build code
+        uses: npm run build
