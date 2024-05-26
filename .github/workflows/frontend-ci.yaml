@@ -14,7 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
+      - name: Setup NodeJs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
       - name: Install packages
         run: npm ci
       - name: Run ESLint
@@ -24,7 +29,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
+      - name: Setup NodeJs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
       - name: Install packages
         run: npm ci
       - name: Run test
@@ -37,8 +47,16 @@ jobs:
       - test_job
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
+      - name: Setup NodeJs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
       - name: Install packages
         run: npm ci
       - name: Build code
-        run: npm run build
+        run : |
+          docker build -t frontend-ci-build .
+      - name: Test code
+        run: npm run test
