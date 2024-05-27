@@ -15,6 +15,7 @@ RUN npm ci
 COPY . .
 
 # Build the app
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN npm run build
 
 # Expose the port used by the React app

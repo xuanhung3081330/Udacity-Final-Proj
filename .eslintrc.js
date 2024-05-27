@@ -9,10 +9,11 @@ module.exports = {
     },
     parserOptions: {
       ecmaVersion: 'latest',
+      requireConfigFile: false,
       sourceType: 'module',
       ecmaFeatures: {
         jsx: true,
-      },
+      }
     },
     env: {
       browser: true,
@@ -22,12 +23,12 @@ module.exports = {
     },
     rules: {
       'prettier/prettier': [
-        'error',
+        'off',
         {
           singleQuote: true,
           jsxSingleQuote: false,
           printWidth: 120,
-          parser: 'babel-ts',
+          parser: '@babel/eslint-parser'
         },
       ],
       // Customize your rules here
