@@ -63,7 +63,7 @@ jobs:
       - name: Extract git tag
         run: export GIT_SHA=$(git rev-parse master)
       - name: Build image
-        run: docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/frontend:$GIT_SHA --build-arg REACT_APP_MOVIE_API_URL=http://localhost:5000
+        run: docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/frontend:$GIT_SHA --build-arg REACT_APP_MOVIE_API_URL=http://localhost:5000 .
       - name: Deploy image
         run: docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/frontend:$GIT_SHA
       - name: Config kubectl to connect to AWS EKS Cluster
