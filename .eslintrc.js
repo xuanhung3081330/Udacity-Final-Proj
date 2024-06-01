@@ -7,12 +7,16 @@ module.exports = {
         version: 'detect',
       },
     },
+    parser: '@babel/eslint-parser',
     parserOptions: {
       ecmaVersion: 'latest',
       requireConfigFile: false,
       sourceType: 'module',
       ecmaFeatures: {
         jsx: true,
+      },
+      babelOptions: {
+        presets: ["@babel/preset-react"]
       }
     },
     env: {
@@ -27,8 +31,7 @@ module.exports = {
         {
           singleQuote: true,
           jsxSingleQuote: false,
-          printWidth: 120,
-          parser: '@babel/eslint-parser'
+          printWidth: 120
         },
       ],
       // Customize your rules here
