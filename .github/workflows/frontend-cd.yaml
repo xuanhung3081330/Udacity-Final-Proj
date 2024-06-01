@@ -61,7 +61,7 @@ jobs:
       - name: Login to AWS ECR  
         uses: aws-actions/amazon-ecr-login@v2
       - name: Extract git tag
-        run: GIT_SHA=$(git rev-parse master)
+        run: echo "GIT_SHA=$(git rev-parse master)" >> $GITHUB_ENV
       - name: Verify git tag content
         run: echo $GIT_SHA
       - name: Build image
