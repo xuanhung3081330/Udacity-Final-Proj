@@ -61,7 +61,9 @@ jobs:
       - name: Login to AWS ECR  
         uses: aws-actions/amazon-ecr-login@v2
       - name: Extract git tag
-        run: export GIT_SHA=$(git rev-parse master)
+        run: GIT_SHA=$(git rev-parse master)
+      - name: Verify git tag content
+        run: echo $GIT_SHA
       - name: Build image
         run: docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/frontend:$GIT_SHA --build-arg REACT_APP_MOVIE_API_URL=http://localhost:5000 .
       - name: Deploy image
